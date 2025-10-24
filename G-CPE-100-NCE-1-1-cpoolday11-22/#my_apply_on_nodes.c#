@@ -1,0 +1,58 @@
+/*
+** EPITECH PROJECT, 2025
+** apply_on_nodes
+** File description:
+** apply_on_node
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "include/mylist.h"
+
+int my_apply_on_nodes(linked_list_t *begin, int (*f)(void *))
+{
+    linked_list_t *list = begin;
+
+    while (begin != NULL) {
+        (*f)(list->data);
+        list = list->next;
+    }
+    return 0;
+}
+
+int print_int(void *data)
+{
+    printf("%d\n", *(int *)data);
+    return 0;
+}
+
+// Fonction pour créer un noeud
+linked_list_t *create_node(int value)
+{
+    linked_list_t *node = malloc(sizeof(linked_list_t));
+    int *data = malloc(sizeof(int));
+    *data = value;
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+void free_list(linked_list_t *head)
+{
+    while (head) {
+        linked_list_t *tmp = head;
+        free(tmp->data);
+        head = head->next;
+        free(tmp);
+    }
+}
+
+int main(void)
+{
+    linked_list_t *n1 = create_node(1);
+    linked_list_t *n2 = create_node(2);
+    linked_list_t *n3 = create_node(3);
+    n1->next = n2;
+    n2->next = n3;
+
+    my_apply_on_nodes(n1, print_int

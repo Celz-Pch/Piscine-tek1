@@ -1,0 +1,8 @@
+/*
+** EPITECH PROJECT, 2025
+** my_getnbr.c
+** File description:
+** get un nbm dans une chaine de caractères
+*/
+
+
